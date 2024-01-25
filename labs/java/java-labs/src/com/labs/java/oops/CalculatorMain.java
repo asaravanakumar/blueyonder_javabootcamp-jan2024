@@ -1,3 +1,5 @@
+package com.labs.java.oops;
+
 import java.util.Scanner;
 
 public class CalculatorMain {
@@ -33,21 +35,27 @@ public class CalculatorMain {
 
             switch (option) {
                 case 1:
-//                    calc1.a = 10;
-//                    calc1.b = 20;
                     readInput();
+                    calc.a = value1;
+                    calc.b = value2;
                     output = calc.add();
                     break;
                 case 2:
                     readInput();
+                    calc.a = value1;
+                    calc.b = value2;
                     output = calc.subtract();
                     break;
                 case 3:
                     readInput();
+                    calc.a = value1;
+                    calc.b = value2;
                     output = calc.multiply();
                     break;
                 case 4:
                     readInput();
+                    calc.a = value1;
+                    calc.b = value2;
                     output = calc.divide();
                     break;
                 case 5:

@@ -34,7 +34,7 @@ public class HashSetDemo {
             System.out.println(order);
         }
 
-//        List<Order> orderList = new ArrayList<Order>(orders);
+//        List<com.labs.java.oops.Order> orderList = new ArrayList<com.labs.java.oops.Order>(orders);
 //
 //        Collections.sort(orderList, SortingDemo.SORT_ORDER_ASC);
 

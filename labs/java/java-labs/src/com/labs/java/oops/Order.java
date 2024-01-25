@@ -1,6 +1,6 @@
-package com.labs.java.collection;
+package com.labs.java.oops;
 
-public class Order { //} implements Comparable {
+public class Order implements Cloneable{
     private int id;
     private String description;
     private int quantity;
@@ -63,10 +63,10 @@ public class Order { //} implements Comparable {
         return this.getId() % 5;
     }
 
-//    @Override
-//    public Object clone() {
-//        return this;
-//    }
+    @Override
+    public Object clone() {
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -77,17 +77,4 @@ public class Order { //} implements Comparable {
                 ", price=" + price +
                 '}';
     }
-
-    // 0 - both objects are equal
-    // +ve - current object is greater than target object
-    // -ve - current object is lesser than target object
-//    @Override
-//    public int compareTo(Object o) {
-//        if(o instanceof com.labs.java.oops.Order) {
-//            com.labs.java.oops.Order target = (com.labs.java.oops.Order) o;
-//            return target.getId() - this.getId();
-////            return Double.valueOf(this.getPrice() - target.getPrice()).intValue();
-//        }
-//        return 0;
-//    }
 }

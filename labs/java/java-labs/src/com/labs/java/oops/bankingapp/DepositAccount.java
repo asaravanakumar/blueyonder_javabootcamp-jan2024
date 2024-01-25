@@ -8,7 +8,7 @@ public class DepositAccount extends Account implements PreCloseable {
 
     }
 
-    public DepositAccount(int id, String name, double balance, String status, double roi, int tenure, boolean autoRenew) {
+    public DepositAccount(int id, String name, double balance, AccountStatus status, double roi, int tenure, boolean autoRenew) {
         super(id, name, balance, status, roi);
         this.tenure = tenure;
         this.autoRenew = autoRenew;
@@ -25,6 +25,6 @@ public class DepositAccount extends Account implements PreCloseable {
 
     @Override
     public void preClose() {
-        System.out.println("Pre closing Deposit Account...");
+        System.out.println("Pre closing Deposit com.labs.java.oops.Account...");
     }
 }

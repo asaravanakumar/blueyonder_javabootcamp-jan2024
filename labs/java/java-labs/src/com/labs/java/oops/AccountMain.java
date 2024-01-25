@@ -1,3 +1,5 @@
+package com.labs.java.oops;
+
 import java.util.Scanner;
 
 public class AccountMain {

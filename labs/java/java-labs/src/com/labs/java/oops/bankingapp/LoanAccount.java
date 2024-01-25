@@ -8,7 +8,7 @@ public class LoanAccount extends Account implements PreCloseable {
 
     }
 
-    public LoanAccount(int id, String name, double balance, String status, double roi, int tenure, double emi) {
+    public LoanAccount(int id, String name, double balance, AccountStatus status, double roi, int tenure, double emi) {
         super(id, name, balance, status, roi);
         this.tenure = tenure;
         this.emi = emi;
@@ -26,6 +26,6 @@ public class LoanAccount extends Account implements PreCloseable {
 
     @Override
     public void preClose() {
-        System.out.println("Pre closing the Loan Account...");
+        System.out.println("Pre closing the Loan com.labs.java.oops.Account...");
     }
 }

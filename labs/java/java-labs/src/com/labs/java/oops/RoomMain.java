@@ -1,3 +1,5 @@
+package com.labs.java.oops;
+
 public class RoomMain {
     public static void main(String[] args) {
         Room room = new Room();
@@ -11,7 +13,7 @@ public class RoomMain {
         room1.length = 20;
         room1.width = 15;
 
-//        room = new Room();
+//        room = new com.labs.java.oops.Room();
         System.out.println("Area is " + room1.computeArea()); // 300
 
 

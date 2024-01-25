@@ -1,12 +1,12 @@
 package com.labs.java.oops.bankingapp;
 
-public abstract class Account {
+public abstract class Account extends Object {
 
     public Account() {
 
     }
 
-    public Account(int id, String name, double balance, String status, double roi) {
+    public Account(int id, String name, double balance, AccountStatus status, double roi) {
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -22,7 +22,7 @@ public abstract class Account {
     private int id;
     private String name;
     private double balance;
-    private String status;
+    private AccountStatus status;
     private double roi;
 
     public int getId() {
@@ -49,11 +49,11 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public String getStatus() {
+    public AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(AccountStatus status) {
         this.status = status;
     }
 
@@ -66,15 +66,25 @@ public abstract class Account {
     }
 
     public void openAccount() {
-        System.out.println("Default Open Account...");
-        this.status = STATUS_ACTIVE;
+        System.out.println("Default Open com.labs.java.oops.Account...");
+        this.status = AccountStatus.ACTIVE;
     }
 
     public abstract double checkBalance();
 
     public void closeAccount() {
-        System.out.println("Default Close Account...");
-        this.status = STATUS_CLOSED;
+        System.out.println("Default Close com.labs.java.oops.Account...");
+        this.status = AccountStatus.CLOSED;
     }
 
+    @Override
+    public String toString() {
+        return "com.labs.java.oops.Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", balance=" + balance +
+                ", status='" + status + '\'' +
+                ", roi=" + roi +
+                '}';
+    }
 }

@@ -1,3 +1,5 @@
+package com.labs.java.oops;
+
 public class Room {
     int length = 10;
     int width = 15;

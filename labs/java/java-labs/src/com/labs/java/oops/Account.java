@@ -1,3 +1,5 @@
+package com.labs.java.oops;
+
 public class Account {
     int id;
     String name;
@@ -18,7 +20,7 @@ public class Account {
             this.balance += amount;
             return true;
         } else {
-            System.out.println("You can't deposit for Suspended or Closed Account");
+            System.out.println("You can't deposit for Suspended or Closed com.labs.java.oops.Account");
             return false;
         }
     }
@@ -28,7 +30,7 @@ public class Account {
             this.balance -= amount;
             return true;
         } else {
-            System.out.println("You can't withdraw from Suspended or Closed Account");
+            System.out.println("You can't withdraw from Suspended or Closed com.labs.java.oops.Account");
             return false;
         }
     }
