@@ -92,10 +92,12 @@ public class GreetingsController1 {
     public ResponseEntity<Greeting> greetingWithGet(@PathVariable(name = "id", required = true) int id) throws GreetingsAppException, NoGreetingsFoundException {
         Greeting greeting = null;
 //        try {
-            greeting = service.getGreeting(id).orElseThrow();
+//            greeting = service.getGreeting(id).orElseThrow();
 //        }catch(NoSuchElementException e) {
 //            return ResponseEntity.internalServerError().body(greeting);
 //        }
+        greeting = service.getGreeting(id).get();
+
         return ResponseEntity.ok().body(greeting);
 
     }
