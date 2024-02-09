@@ -1,8 +1,9 @@
 package com.labs.spring.rest.controller;
 
+import com.labs.spring.rest.exception.GreetingsAppException;
+import com.labs.spring.rest.exception.NoGreetingsFoundException;
 import com.labs.spring.rest.model.Greeting;
 import com.labs.spring.rest.service.GreetingsService1;
-import com.labs.spring.rest.service.GreetingsServiceObjImpl;
 import com.labs.spring.rest.model.ResponseMessage;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -29,13 +30,16 @@ public class GreetingsController1 {
     @Autowired
     WebApplicationContext ctx;
 
-    GreetingsService1 service = new GreetingsServiceObjImpl();
+    @Autowired
+    GreetingsService1 service;
+
+//    GreetingsService1 service = new GreetingsServiceObjImpl();
 
     // POST /greetings
 //    @RequestMapping(path = "/greetings1", method = RequestMethod.POST)
 //    @PostMapping(path = "/greetings1")
     @PostMapping(consumes = {"application/json", "application/xml"})
-    public ResponseEntity<ResponseMessage> greetingWithPost(@RequestBody @Valid Greeting greeting) throws URISyntaxException {  // BindingResult errors
+    public ResponseEntity<ResponseMessage> greetingWithPost(@RequestBody @Valid Greeting greeting) throws URISyntaxException, GreetingsAppException {  // BindingResult errors
         // Validation Approach #1: Custom Validation logic. Not Recommended
 //        String valErrorMsg = null;
 //        if(greeting.getType() == null || greeting.getType().isBlank()) {
@@ -85,7 +89,7 @@ public class GreetingsController1 {
 //    @RequestMapping(path = "/greetings1/{id}", method = RequestMethod.GET)
 //    @GetMapping(path = "/greetings1/{id}")
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})
-    public ResponseEntity<Greeting> greetingWithGet(@PathVariable(name = "id", required = true) int id) {
+    public ResponseEntity<Greeting> greetingWithGet(@PathVariable(name = "id", required = true) int id) throws GreetingsAppException, NoGreetingsFoundException {
         Greeting greeting = null;
 //        try {
             greeting = service.getGreeting(id).orElseThrow();
@@ -143,8 +147,15 @@ public class GreetingsController1 {
             return ResponseEntity.badRequest().body(response);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseMessage> handleGenericException(Exception e) {
+    @ExceptionHandler(NoGreetingsFoundException.class)
+    public ResponseEntity<ResponseMessage> handleNoGreetingsFoundException(Exception e) {
+        String msg = "ERROR: " + e.getMessage();
+        ResponseMessage response = new ResponseMessage("Failure", msg);
+        return ResponseEntity.internalServerError().body(response);
+    }
+
+    @ExceptionHandler(GreetingsAppException.class)
+    public ResponseEntity<ResponseMessage> handleGreetingsAppException(Exception e) {
         String msg = "ERROR: " + e.getMessage();
         ResponseMessage response = new ResponseMessage("Failure", msg);
         return ResponseEntity.internalServerError().body(response);

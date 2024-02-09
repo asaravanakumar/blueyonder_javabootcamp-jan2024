@@ -19,6 +19,7 @@
         <jaxb.library>4.0.1</jaxb.library>
         <javax.validation-api-version>3.0.2</javax.validation-api-version>
         <org.hibernate-validator-version>8.0.0.Final</org.hibernate-validator-version>
+        <org.postgres-version>42.7.0</org.postgres-version>
         <maven-war-plugin-version>3.4.0</maven-war-plugin-version>
         <slf4j-version>1.7.36</slf4j-version>
     </properties>
@@ -97,6 +98,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-version}</version>
+        </dependency>
+
+        <!-- Postgres Driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${org.postgres-version}</version>
         </dependency>
     </dependencies>
 
