@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-init-method="init" default-destroy-method="destroy" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Car swift = new Car();
+            swift.setModel("VXI");
+            swift.setManufacturer("Maruti Suzuki");
+            swift.setColor("White");
+            swift.setEngine(petrol);
+     -->
+
+<!--    <bean id="swift" class="com.labs.spring.xml.Car" lazy-init="true" scope="singleton" init-method="init" destroy-method="destroy">-->
+<!--        <property name="model" value="Swift VXI" />-->
+<!--        <property name="manufacturer" value="Maruti Suzuki" />-->
+<!--        <property name="color" value="White" />-->
+<!--        <property name="engine" ref="petrol" />-->
+<!--    </bean>-->
+
+    <!-- Overloaded Constructor - Constructor Arg Resolution with Name -->
+<!--    <bean id="swift" class="com.labs.spring.xml.Car">-->
+<!--            <constructor-arg name="model" value="Swift VXI" />-->
+<!--            <constructor-arg name="manufacturer" value="Maruti Suzuki" />-->
+<!--            <constructor-arg name="color" value="White" />-->
+<!--            <constructor-arg name="engine" ref="petrol" />-->
+<!--    </bean>-->
+
+    <!-- Static Factory Method -->
+<!--        <bean id="swift" class="com.labs.spring.xml.Car" factory-method="getInstance">-->
+<!--            <property name="model" value="Swift VXI" />-->
+<!--            <property name="manufacturer" value="Maruti Suzuki" />-->
+<!--            <property name="color" value="White" />-->
+<!--            <property name="engine" ref="petrol" />-->
+<!--        </bean>-->
+
+    <!-- Overloaded Factory Method - Constructor Arg Resolution with Name -->
+<!--    <bean id="swift" class="com.labs.spring.xml.Car" factory-method="getInstance">-->
+<!--        <constructor-arg name="model" value="Swift VXI" />-->
+<!--        <constructor-arg name="manufacturer" value="Maruti Suzuki" />-->
+<!--        <constructor-arg name="color" value="White" />-->
+<!--        <constructor-arg name="engine" ref="petrol" />-->
+<!--    </bean>-->
+
+<!--    <bean id="carFactory" class="com.labs.spring.xml.CarFactory" />-->
+
+<!--     Instance Factory Method -->
+<!--    <bean id="swift" class="com.labs.spring.xml.Car" factory-bean="carFactory" factory-method="createCar">-->
+<!--        <property name="model" value="Swift VXI" />-->
+<!--        <property name="manufacturer" value="Maruti Suzuki" />-->
+<!--        <property name="color" value="White" />-->
+<!--        <property name="engine" ref="petrol" />-->
+<!--    </bean>-->
+
+<!--        <bean id="bolero" class="com.labs.spring.xml.Car">-->
+<!--            <property name="model" value="Bolero XYZ" />-->
+<!--            <property name="manufacturer" value="Mahindra" />-->
+<!--            <property name="color" value="Black" />-->
+<!--            <property name="engine" ref="diesel" />-->
+<!--        </bean>-->
+
+
+    <!-- Auto Wiring - no -->
+
+<!--    <bean id="swift" class="com.labs.spring.xml.Car" autowire="no">-->
+<!--        <property name="model" value="Swift VXI" />-->
+<!--        <property name="manufacturer" value="Maruti Suzuki" />-->
+<!--        <property name="color" value="White" />-->
+<!--    </bean>-->
+
+    <!-- Auto Wiring - byName -->
+
+<!--        <bean id="swift" class="com.labs.spring.xml.Car" autowire="byName">-->
+<!--            <property name="model" value="Swift VXI" />-->
+<!--            <property name="manufacturer" value="Maruti Suzuki" />-->
+<!--            <property name="color" value="White" />-->
+<!--        </bean>-->
+
+    <!-- Auto Wiring - byType -->
+<!--    <bean id="swift" class="com.labs.spring.xml.Car" autowire="byType">-->
+<!--        <property name="model" value="Swift VXI" />-->
+<!--        <property name="manufacturer" value="Maruti Suzuki" />-->
+<!--        <property name="color" value="White" />-->
+<!--    </bean>-->
+
+    <!-- Auto Wiring - constructor -->
+    <bean id="swift" class="com.labs.spring.xml.Car" autowire="constructor">
+        <property name="model" value="Swift VXI" />
+        <property name="manufacturer" value="Maruti Suzuki" />
+        <property name="color" value="White" />
+    </bean>
+
+        <!--
+            Engine petrol = new Engine();
+            petrol.setType("petrol");
+            petrol.setTransType("Manual");
+            petrol.setCapacity(1200);
+        -->
+
+    <!-- Default Constructor -->
+    <bean id="petrol" class="com.labs.spring.xml.Engine" >
+        <property name="type" value="Petrol" />
+        <property name="transType" value="Manual" />
+        <property name="capacity" value="1200" />
+    </bean>
+
+    <!-- Overloaded Constructor - Constructor Arg Resolution with Type -->
+    <bean id="diesel" class="com.labs.spring.xml.Engine" primary="true" autowire-candidate="false">
+        <constructor-arg type="String" value="Diesel" />
+        <constructor-arg type="String" value="Manual" />
+        <constructor-arg type="Integer" value="1500" />
+    </bean>
+
+    <!-- Overloaded Constructor - Constructor Arg Resolution with Index -->
+    <bean id="electric" class="com.labs.spring.xml.Engine" primary="true">
+        <constructor-arg index="0" value="Electric" />
+        <constructor-arg index="1" value="Manual" />
+        <constructor-arg index="2" value="1000" />
+    </bean>
+
+</beans>
