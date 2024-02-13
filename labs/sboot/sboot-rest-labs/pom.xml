@@ -18,6 +18,8 @@
 		<jaxb.library>4.0.1</jaxb.library>
 		<org.postgres-version>42.7.0</org.postgres-version>
 		<h2.version>2.2.224</h2.version>
+		<spring.framework.version>6.1.3</spring.framework.version>
+		<hibernate-version>6.4.4.Final</hibernate-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -62,6 +64,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<!-- Spring ORM -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-version}</version>
 		</dependency>
 
 		<!-- Postgres Driver -->

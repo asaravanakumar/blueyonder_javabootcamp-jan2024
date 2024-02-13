@@ -13,7 +13,7 @@ public interface GreetingsService1 {
     public Optional<Greeting> getGreeting(int id) throws GreetingsAppException, NoGreetingsFoundException;
     public Collection<Greeting> getAllGreetings();
 
-    public boolean updateGreeting(int id, Greeting greeting);
+    public boolean updateGreeting(int id, Greeting greeting) throws NoGreetingsFoundException;
 
-    public boolean deleteGreeting(int id);
+    public boolean deleteGreeting(int id) throws NoGreetingsFoundException;
 }

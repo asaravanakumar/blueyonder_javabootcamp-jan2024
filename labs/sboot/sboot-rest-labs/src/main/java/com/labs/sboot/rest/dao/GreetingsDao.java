@@ -11,6 +11,6 @@ public interface GreetingsDao {
     public int addGreeting(Greeting greeting) throws GreetingsDataException;
     public Optional<Greeting> getGreeting(int id) throws GreetingsDataException, NoGreetingsFoundException;
     public Collection<Greeting> getAllGreetings();
-    public boolean updateGreeting(int id, Greeting greeting);
-    public boolean deleteGreeting(int id);
+    public boolean updateGreeting(int id, Greeting greeting) throws NoGreetingsFoundException;
+    public boolean deleteGreeting(int id) throws NoGreetingsFoundException;
 }

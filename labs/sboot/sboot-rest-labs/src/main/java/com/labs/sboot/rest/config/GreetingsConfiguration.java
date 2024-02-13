@@ -2,6 +2,7 @@ package com.labs.sboot.rest.config;
 
 import com.labs.sboot.rest.dao.GreetingsDao;
 import com.labs.sboot.rest.dao.GreetingsDaoJdbcTempImpl;
+import com.labs.sboot.rest.dao.GreetingsDaoJpaImpl;
 import com.labs.sboot.rest.service.GreetingsService1;
 import com.labs.sboot.rest.service.GreetingsServiceImpl1;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -22,7 +23,8 @@ public class GreetingsConfiguration {
     @Bean
     public GreetingsDao greetingsDao() {
 //        return new GreetingsDaoJdbcImpl();
-        return new GreetingsDaoJdbcTempImpl();
+//        return new GreetingsDaoJdbcTempImpl();
+        return new GreetingsDaoJpaImpl();
     }
 
 //    @Bean

@@ -106,7 +106,7 @@ public class GreetingsController1 {
 //    @RequestMapping(path = "/greetings1/{id}", method = RequestMethod.PUT)
 //    @PutMapping(path = "/greetings1/{id}")
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ResponseMessage> greetingsWithPut(@PathVariable(name = "id", required = true) int id, @RequestBody Greeting greeting) {
+    public ResponseEntity<ResponseMessage> greetingsWithPut(@PathVariable(name = "id", required = true) int id, @RequestBody Greeting greeting) throws NoGreetingsFoundException {
         ResponseMessage response =  service.updateGreeting(id, greeting) ? new ResponseMessage("Success", "Update Successfull!!!")  : new ResponseMessage("Failure", "Update Failed!!!");
         log.info(response.toString());
         return ResponseEntity.ok(response);
@@ -116,7 +116,7 @@ public class GreetingsController1 {
 //    @RequestMapping(path = "/greetings1/{id}", method = RequestMethod.DELETE)
 //    @DeleteMapping(path = "/greetings1/{id}")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<ResponseMessage>  greetingsWithDelete(@PathVariable(name = "id", required = true) int id) {
+    public ResponseEntity<ResponseMessage>  greetingsWithDelete(@PathVariable(name = "id", required = true) int id) throws NoGreetingsFoundException {
         ResponseMessage response = service.deleteGreeting(id) ? new ResponseMessage("Success", "Delete Successfull!!!")  : new ResponseMessage("Failure", "Delete Failed!!!");
         log.info(response.toString());
         return ResponseEntity.ok(response);

@@ -51,7 +51,7 @@ public class GreetingsServiceImpl1 implements GreetingsService1 {
     }
 
     @Override
-    public boolean updateGreeting(int id, Greeting greeting) {
+    public boolean updateGreeting(int id, Greeting greeting) throws NoGreetingsFoundException {
 //        if(greetings.containsKey(id)) {
 //            greetings.put(id, greeting);
 //            return true;
@@ -61,7 +61,7 @@ public class GreetingsServiceImpl1 implements GreetingsService1 {
     }
 
     @Override
-    public boolean deleteGreeting(int id) {
+    public boolean deleteGreeting(int id) throws NoGreetingsFoundException {
 //        if(greetings.containsKey(id)) {
 //            greetings.remove(id);
 //            return true;

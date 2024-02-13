@@ -1,13 +1,21 @@
 package com.labs.sboot.rest.model;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
+@Entity
+@Table
 @XmlRootElement
 public class Greeting {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     @NotBlank(message = "Type can't be blank")
