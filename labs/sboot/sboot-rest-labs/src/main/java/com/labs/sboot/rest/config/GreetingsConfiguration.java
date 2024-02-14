@@ -5,6 +5,7 @@ import com.labs.sboot.rest.dao.GreetingsDaoJdbcTempImpl;
 import com.labs.sboot.rest.dao.GreetingsDaoJpaImpl;
 import com.labs.sboot.rest.service.GreetingsService1;
 import com.labs.sboot.rest.service.GreetingsServiceImpl1;
+import com.labs.sboot.rest.service.GreetingsServiceImpl2;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +18,16 @@ public class GreetingsConfiguration {
 
     @Bean
     public GreetingsService1 greetingsService1() {
-        return new GreetingsServiceImpl1();
+//        return new GreetingsServiceImpl1();
+        return new GreetingsServiceImpl2();
     }
 
-    @Bean
-    public GreetingsDao greetingsDao() {
+//    @Bean
+//    public GreetingsDao greetingsDao() {
 //        return new GreetingsDaoJdbcImpl();
 //        return new GreetingsDaoJdbcTempImpl();
-        return new GreetingsDaoJpaImpl();
-    }
+//        return new GreetingsDaoJpaImpl();
+//    }
 
 //    @Bean
 //    public DataSource dataSource() {

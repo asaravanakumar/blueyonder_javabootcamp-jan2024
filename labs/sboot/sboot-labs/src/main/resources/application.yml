@@ -1,0 +1,4 @@
+application.name: sboot-labs
+logging:
+  level.ROOT: debug
+  file.name: application.log

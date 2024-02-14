@@ -5,6 +5,7 @@ import com.labs.sboot.rest.exception.NoGreetingsFoundException;
 import com.labs.sboot.rest.model.Greeting;
 import com.labs.sboot.rest.model.ResponseMessage;
 import com.labs.sboot.rest.service.GreetingsService1;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public class GreetingsController1 {
     // POST /greetings
 //    @RequestMapping(path = "/greetings1", method = RequestMethod.POST)
 //    @PostMapping(path = "/greetings1")
+    @Operation(summary = "Creates Greetings message")
     @PostMapping(consumes = {"application/json", "application/xml"})
     public ResponseEntity<ResponseMessage> greetingWithPost(@RequestBody @Valid Greeting greeting) throws URISyntaxException, GreetingsAppException {  // BindingResult errors
         // Validation Approach #1: Custom Validation logic. Not Recommended
@@ -79,6 +81,8 @@ public class GreetingsController1 {
     // GET /greetings
 //    @RequestMapping(path = "/greetings1", method = RequestMethod.GET)
 //    @GetMapping(path = "/greetings1")
+    @Operation(summary = "Listing Greeting messages")
+
     @GetMapping
     public Collection<Greeting> greetingWithGetAll() {
         log.debug("Get All Greetings called");
@@ -88,6 +92,7 @@ public class GreetingsController1 {
     // GET /greetings/{id}
 //    @RequestMapping(path = "/greetings1/{id}", method = RequestMethod.GET)
 //    @GetMapping(path = "/greetings1/{id}")
+    @Operation(summary = "Fetches Greetings message")
     @GetMapping(path = "/{id}", produces = {"application/json", "application/xml"})
     public ResponseEntity<Greeting> greetingWithGet(@PathVariable(name = "id", required = true) int id) throws GreetingsAppException, NoGreetingsFoundException {
         Greeting greeting = null;
@@ -105,6 +110,7 @@ public class GreetingsController1 {
     // PUT /greetings/{id}
 //    @RequestMapping(path = "/greetings1/{id}", method = RequestMethod.PUT)
 //    @PutMapping(path = "/greetings1/{id}")
+    @Operation(summary = "Updates Greetings message")
     @PutMapping(path = "/{id}")
     public ResponseEntity<ResponseMessage> greetingsWithPut(@PathVariable(name = "id", required = true) int id, @RequestBody Greeting greeting) throws NoGreetingsFoundException {
         ResponseMessage response =  service.updateGreeting(id, greeting) ? new ResponseMessage("Success", "Update Successfull!!!")  : new ResponseMessage("Failure", "Update Failed!!!");
@@ -115,11 +121,26 @@ public class GreetingsController1 {
     // DELETE /greetings/{id}
 //    @RequestMapping(path = "/greetings1/{id}", method = RequestMethod.DELETE)
 //    @DeleteMapping(path = "/greetings1/{id}")
+    @Operation(summary = "Deletes Greetings message")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<ResponseMessage>  greetingsWithDelete(@PathVariable(name = "id", required = true) int id) throws NoGreetingsFoundException {
         ResponseMessage response = service.deleteGreeting(id) ? new ResponseMessage("Success", "Delete Successfull!!!")  : new ResponseMessage("Failure", "Delete Failed!!!");
         log.info(response.toString());
         return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "Searches Greetings message")
+    @GetMapping(path = "/search", produces = {"application/json", "application/xml"})
+    public Collection<Greeting> searchGreetings(@RequestParam(name = "type", required = false) String type,
+                                                @RequestParam(name = "message", required = false) String message) throws GreetingsAppException, NoGreetingsFoundException {
+
+        if( (type == null || type.isBlank()) && (message == null || message.isBlank())) {
+            return service.getAllGreetings();
+        } else if((message == null || message.isBlank())) {
+            return service.searchGreetings(type);
+        } else {
+            return service.searchGreetings(type, message);
+        }
     }
 
     @RequestMapping(path = "/beans")
