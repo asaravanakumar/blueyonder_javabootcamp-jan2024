@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +22,12 @@ public class SpringCloudServiceDiscoveryApplication implements CommandLineRunner
 	@Autowired
 	DiscoveryClient client;
 
+	@LoadBalanced
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCloudServiceDiscoveryApplication.class, args);
 	}
@@ -32,15 +40,22 @@ public class SpringCloudServiceDiscoveryApplication implements CommandLineRunner
 			System.out.println(serviceName);
 		}
 
-		RestTemplate restClient = new RestTemplate();
+//		RestTemplate restClient = new RestTemplate();
+//
+//		List<ServiceInstance> serviceInstances = client.getInstances("registration-service");
+//		for(ServiceInstance serInstance: serviceInstances) {
+//			String baseUri = serInstance.getUri().toString() + "/products";
+//			System.out.println(baseUri);
+//
+//			// List Products
+//			ResponseEntity<List> response = restClient.getForEntity(baseUri, List.class);
+//			System.out.println(response.getStatusCode());
+//			System.out.println(response.getBody());
+//		}
 
-		List<ServiceInstance> serviceInstances = client.getInstances("registration-service");
-		for(ServiceInstance serInstance: serviceInstances) {
-			String baseUri = serInstance.getUri().toString() + "/products";
-			System.out.println(baseUri);
-
-			// List Products
-			ResponseEntity<List> response = restClient.getForEntity(baseUri, List.class);
+		// Load Balanced Request
+		for(int i=0; i < 5; i++) {
+			ResponseEntity<List> response = restTemplate().getForEntity("http://registration-service/products", List.class);
 			System.out.println(response.getStatusCode());
 			System.out.println(response.getBody());
 		}

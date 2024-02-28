@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: sboot-security-labs
+
+server:
+  port: 7070
