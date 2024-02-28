@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: bankingapp-account-service
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: bankingapp-config-service
+  config:
+    import: 'optional:configserver:'
+
+
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/bankingapp-account-service
+#    username: postgres
+#    password: postgres
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    format_sql: true
+#  h2:
+#    console:
+#      enabled: true
+
+# Server Port
+#server:
+#  port: 8091
+#
+## Eureka Client
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://localhost:8761/eureka
+#    register-with-eureka: true
+#    fetch-registry: false
+#
+## Actuator Endpoints
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+
+
+

@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: bankingapp-gateway-service
+  threads:
+    virtual:
+      enabled: true
+  cloud.gateway.mvc:
+    routesMap:
+      configRoute1:
+        # http://localhost:8111/bankingapp/api/accounts -> http://localhost:8091/accounts
+        uri: lb://bankingapp-account-service
+        predicates:
+          - Path=/bankingapp/api/accounts/**
+        filters:
+        #  - SetPath=/accounts
+         - StripPrefix=2
+         # - RewritePath=/bankingapp/api/accounts/?(?<segment>.*), /accounts/$\{segment}
+      configRoute2:
+        # http://localhost:8111/bankingapp/api/transactions -> http://localhost:8092/transactions
+        uri: lb://bankingapp-transaction-service
+        predicates:
+          - Path=/bankingapp/api/transactions
+        filters:
+          - SetPath=/transactions
+      configRoute3:
+        # http://localhost:8111/bankingapp/api/fundtransfers -> http://localhost:8093/fundtransfers
+        uri: lb://bankingapp-fund-transfer-service
+        predicates:
+          - Path=/bankingapp/api/fundtransfers
+        filters:
+          - SetPath=/fundtransfers
+
+server:
+  port: 8111
+
+# JWT Security Secret
+security:
+  jwt:
+    secret-key: springsecurityjwtsecret
+    token-duration: 1D
+
+# Eureka Client
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+# Logging
+logging:
+  level:
+    org.springframework.cloud.gateway.server.mvc: TRACE
+    org.springframework.web: TRACE
+
+# Actuator Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

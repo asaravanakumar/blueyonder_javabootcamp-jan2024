@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: bankingapp-auth-service
+
+server:
+  port: 7070
+
+security:
+  jwt:
+    secret-key: springsecurityjwtsecret
+    token-duration: 1D

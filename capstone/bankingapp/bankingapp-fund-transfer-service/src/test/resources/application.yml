@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: bankingapp-fund-transfer-service
+  cloud:
+    config:
+      enabled: false
+  kafka:
+    bootstrap-servers: localhost:0
+
+# Kafka Topic
+bankingapp:
+  kafka:
+    topic:
+      fund-transfers: fund-transfers
+
+## Disable Eureka Client
+eureka:
+  client:
+    enabled: false
+
+
+

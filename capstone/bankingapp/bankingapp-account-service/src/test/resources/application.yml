@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: bankingapp-account-service
+  cloud:
+    config:
+      enabled: false
+#  config:
+#    import: 'optional:configserver:'
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+## Disable Eureka Client
+eureka:
+  client:
+    enabled: false
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/bankingapp-account-service
+#    username: postgres
+#    password: postgres
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    format_sql: true
+#  h2:
+#    console:
+#      enabled: true
+
+## Actuator Endpoints
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+
+
+
