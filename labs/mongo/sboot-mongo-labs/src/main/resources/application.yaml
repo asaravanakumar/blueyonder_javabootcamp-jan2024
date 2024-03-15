@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sboot-mongo-labs
+  data: #MongoDB Server Configuration
+    mongodb:
+      host: localhost
+      port: 27017
+      username: mongo
+      password: mongo
+      database: training
+      authentication-database: admin
